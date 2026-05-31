@@ -1,0 +1,105 @@
+/* Reset y base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    min-height: 100vh;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+/* Header */
+.header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 2rem; padding-bottom: 1rem;
+    border-bottom: 2px solid #4a90e2;
+}
+.header h1 { font-size: 1.6rem; color: #2b4c8c; }
+.subtitulo { color: #718096; margin-top: .25rem; }
+
+/* Menú */
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.menu-card {
+    background: #fff; border-radius: 12px; padding: 2rem;
+    text-align: center; text-decoration: none; color: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    transition: transform .2s, box-shadow .2s;
+    border: 2px solid transparent;
+}
+.menu-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,.12); border-color: #4a90e2; }
+.menu-icon { font-size: 3rem; margin-bottom: 1rem; }
+.menu-card h2 { color: #2b4c8c; margin-bottom: .5rem; }
+.menu-card p { color: #718096; font-size: .9rem; }
+
+/* Formulario */
+.seccion-form {
+    background: #fff; border-radius: 10px; padding: 1.5rem;
+    margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.seccion-form h2 { color: #2b4c8c; margin-bottom: 1rem; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: .5rem; }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+.campo-completo { grid-column: 1 / -1; }
+
+.campo { display: flex; flex-direction: column; gap: .4rem; }
+.campo label { font-weight: 600; font-size: .9rem; color: #4a5568; }
+
+/* Inputs y selects */
+.campo input, .campo select, .campo textarea {
+    padding: .6rem .85rem;
+    border: 1.5px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color .2s, box-shadow .2s;
+    background: #fff;
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+    outline: none; border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74,144,226,.2);
+}
+/* Estado inválido */
+.campo input:invalid:not(:placeholder-shown),
+.campo select:invalid,
+.campo input.invalido { border-color: #e53e3e; }
+
+.error-msg {
+    color: #e53e3e; font-size: .8rem; display: none;
+}
+.campo.con-error .error-msg { display: block; }
+.campo.con-error input, .campo.con-error select, .campo.con-error textarea {
+    border-color: #e53e3e;
+}
+
+/* Botones */
+.btn {
+    display: inline-block; padding: .65rem 1.4rem; border-radius: 6px;
+    font-size: .95rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; border: none; transition: background .2s, transform .1s;
+}
+.btn:active { transform: scale(.97); }
+.btn-primario { background: #4a90e2; color: #fff; }
+.btn-primario:hover { background: #2b6cb0; }
+.btn-secundario { background: #e2e8f0; color: #2d3748; }
+.btn-secundario:hover { background: #cbd5e0; }
+
+.form-acciones { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+
+/* Alertas */
+.alerta { padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 500; }
+.alerta-exito { background: #c6f6d5; color: #22543d; border-left: 4px solid #38a169; }
+.alerta-error  { background: #fed7d7; color: #742a2a; border-left: 4px solid #e53e3e; }
+
+/* Tabla */
+.tabla-wrapper { background: #fff; border-radius: 10px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.06); overflow-x: auto; }
+.tabla-actas { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.tabla-actas th { background: #2b4c8c; color: #fff; padding: .75rem 1rem; text-align: left; }
+.tabla-actas td { padding: .7rem 1rem; border-bottom: 1px solid #e2e8f0; }
+.tabla-actas tr:hover td { background: #ebf4ff; }
+
+.badge { padding: .25rem .7rem; border-radius: 999px; font-size: .8rem; font-weight: 600; }
+.badge-info { background: #bee3f8; color: #2b6cb0; }
+.badge-ok   { background: #c6f6d5; color: #276749; }
+
+.sin-datos { text-align: center; color: #a0aec0; padding: 3rem; font-size: 1.1rem; }

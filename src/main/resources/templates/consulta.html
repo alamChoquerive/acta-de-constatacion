@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Actas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Consulta de Actas de Constatación</h1>
+        <a th:href="@{/menu}" class="btn btn-secundario">← Volver al Menú</a>
+    </header>
+
+    <div class="tabla-wrapper">
+        <!-- Equivale al JTable de la vista consulta.java -->
+        <table class="tabla-actas" th:if="${not #lists.isEmpty(actas)}">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha Labrado</th>
+                <th>Hora</th>
+                <th>Lugar</th>
+                <th>Vehículo</th>
+                <th>Autoridad</th>
+                <th>Estado</th>
+                <th>Organización</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="acta : ${actas}">
+                <td th:text="${acta.idActa}">1</td>
+                <td th:text="${acta.fechaLabraDo}">2024-01-01</td>
+                <td th:text="${acta.horaDeLabrado}">10:00</td>
+                <td th:text="${acta.lugarDeConstatacion ?: '—'}">Ruta 7</td>
+                <td th:text="${acta.vehiculo != null ? acta.vehiculo.dominio : 'Sin vehículo'}">ABC123</td>
+                <td th:text="${acta.autoridad != null ? acta.autoridad.nombre + ' ' + acta.autoridad.apellido : 'Sin autoridad'}">Juan Pérez</td>
+                <td>
+                        <span class="badge"
+                              th:text="${acta.estado != null ? acta.estado.nombreEstadoActa : 'Sin estado'}"
+                              th:classappend="${acta.estado?.nombreEstadoActa == 'GENERADA'} ? 'badge-info' : 'badge-ok'">
+                        </span>
+                </td>
+                <td th:text="${acta.organizacion != null ? acta.organizacion.nombreOrganizacion : '—'}">Org</td>
+            </tr>
+            </tbody>
+        </table>
+        <p th:if="${#lists.isEmpty(actas)}" class="sin-datos">No hay actas registradas.</p>
+    </div>
+</div>
+</body>
+</html>

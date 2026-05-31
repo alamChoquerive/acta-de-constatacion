@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Actas - Menú</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Sistema de Actas de Constatación</h1>
+        <p class="subtitulo">Seleccione una opción para continuar</p>
+    </header>
+
+    <main class="menu-grid">
+        <!-- Equivale al buttonCrear de menu.java -->
+        <a th:href="@{/actas/nueva}" class="menu-card">
+            <div class="menu-icon">📋</div>
+            <h2>Crear Acta</h2>
+            <p>Registrar una nueva acta de constatación</p>
+        </a>
+
+        <!-- Equivale al buttonConsulta de menu.java -->
+        <a th:href="@{/actas/consulta}" class="menu-card">
+            <div class="menu-icon">🔍</div>
+            <h2>Consultar Actas</h2>
+            <p>Ver el listado de actas existentes</p>
+        </a>
+    </main>
+</div>
+</body>
+</html>
