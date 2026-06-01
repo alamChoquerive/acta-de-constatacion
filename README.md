@@ -1,7 +1,8 @@
 # Acta de Constatación
 
 ## Descripción
-Proyecto Spring Boot para manejar actas de constatación con Thymeleaf, JPA y MySQL.
+Proyecto Spring Boot para manejar actas de constatación con Thymeleaf, JPA y MySQL. El sistema permite crear, consultar y gestionar actas de constatación de infracciones viales con registro de vehículos, conductores, autoridades, infracciones y estados.
+ATENCIÓN: LO QUE HICE PARA INSERTAR LOS DATOS Y QUE NO ME FALLE FUE QUE SELECCIONE CON EL MOUSE TODOS LOS INSERT Y EJECUTE CON EL PRIMER RAYO LUEGO DE SEGUIR LOS PASOS.
 
 ## Requisitos
 - Java 17
@@ -9,12 +10,36 @@ Proyecto Spring Boot para manejar actas de constatación con Thymeleaf, JPA y My
 - MySQL corriendo en `localhost:3306`
 
 ## Configuración de la base de datos
-1. Crea la base de datos:
+**Importante**: Es fundamental seguir este orden exacto para evitar inconvenientes:
+
+### 1. Crear solo la base de datos (sin tablas)
+Ejecuta en MySQL:
 ```sql
 CREATE DATABASE actas;
+```
+
+### 2. Arranca el proyecto (genera las tablas automáticamente)
+Desde la raíz del proyecto ejecuta:
+
+Windows:
+```powershell
+./mvnw.cmd clean spring-boot:run
+```
+
+Linux/macOS:
+```bash
+./mvnw clean spring-boot:run
+```
+
+Déjalo corriendo hasta que veas `Tomcat started on port(s): 8080` en la consola. **Esto es importante**: Hibernate creará automáticamente todas las tablas usando la configuración `spring.jpa.hibernate.ddl-auto=update` en `application.properties`.
+
+### 3. Una vez que las tablas están creadas, inserta los datos iniciales
+En MySQL, ejecuta:
+```sql
 USE actas;
 ```
-2. Inserta los datos iniciales:
+
+Luego inserta los datos:
 ```sql
 INSERT INTO estados_acta (id_estado, descripcion_estado, nombre_estado) VALUES
 (1, 'Acta generada y pendiente de pago', 'GENERADA'),
@@ -66,7 +91,7 @@ INSERT INTO tipos_infraccion (id_infrac, descripcion_infraccion, tipo_gravedad, 
 (4, 'Circular sin casco', 'Alta', 250.00, 0.00);
 ```
 
-> Nota: si ya existe información previa, puede ser necesario borrar los datos duplicados antes de volver a ejecutar el script.
+> **Nota**: Si obtienes errores de duplicados, borra los datos (`DELETE FROM ...`) antes de reintentar. Si necesitas reiniciar desde cero, ejecuta el script nuevamente.
 
 ## Configuración de conexión
 La aplicación lee la conexión desde `src/main/resources/application.properties`:
@@ -94,10 +119,12 @@ Linux/macOS:
 
 ## Qué probar
 - Abre `http://localhost:8080/menu`
-- Crea una nueva acta en `/actas/nueva`
+- Crea una nueva acta en `/actas/nueva` (verás todos los campos disponibles una vez insertados los datos)
 - Consulta actas en `/actas/consulta`
 
 ## Observaciones
 - El proyecto está configurado para Java 17.
 - Si usás MySQL con contraseña, actualiza `spring.datasource.password`.
 - El servidor embebido corre en el puerto `8080`.
+- Las tablas se crean automáticamente en el primer arranque gracias a Hibernate.
+- Los datos iniciales deben insertarse **después** de que el proyecto haya creado las tablas.
