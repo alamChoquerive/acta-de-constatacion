@@ -2,7 +2,7 @@
 
 ## Descripción
 Proyecto Spring Boot para manejar actas de constatación con Thymeleaf, JPA y MySQL. El sistema permite crear, consultar y gestionar actas de constatación de infracciones viales con registro de vehículos, conductores, autoridades, infracciones y estados.
-ATENCIÓN: LO QUE HICE PARA INSERTAR LOS DATOS Y QUE NO ME FALLE FUE QUE SELECCIONE CON EL MOUSE TODOS LOS INSERT Y EJECUTE CON EL PRIMER RAYO LUEGO DE SEGUIR LOS PASOS.
+
 
 ## Requisitos
 - Java 17
@@ -34,6 +34,10 @@ Linux/macOS:
 Déjalo corriendo hasta que veas `Tomcat started on port(s): 8080` en la consola. **Esto es importante**: Hibernate creará automáticamente todas las tablas usando la configuración `spring.jpa.hibernate.ddl-auto=update` en `application.properties`.
 
 ### 3. Una vez que las tablas están creadas, inserta los datos iniciales
+
+**ATENCIÓN**
+ LO QUE HICE PARA INSERTAR LOS DATOS Y QUE NO ME FALLE FUE QUE SELECCIONE CON EL MOUSE TODOS LOS INSERT Y EJECUTE CON EL PRIMER RAYO LUEGO DE SEGUIR LOS PASOS.
+
 En MySQL, ejecuta:
 ```sql
 USE actas;
